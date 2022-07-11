@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# shellcheck source=start-utils
+. "${SCRIPTS:-/}start-utils"
+
+export ENABLE_AUTOWHITELIST
+export AUTOWHITELIST_TIMEOUT
+
+log "autowhitelist functionality enabled"
+
+/autowhitelist/autowhitelist-daemon.sh &

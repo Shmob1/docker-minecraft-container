@@ -137,6 +137,10 @@ if isTrue "${ENABLE_AUTOSTOP}"; then
   ${SCRIPTS:-/}start-autostop
 fi
 
+if isTrue "${ENABLE_AUTOWHITELIST}"; then
+  ${SCRIPTS:-/}start-autowhitelist
+fi
+
 if 
   [[ "$RCON_CMDS_STARTUP" ]] ||
   [[ "$RCON_CMDS_ON_CONNECT" ]] ||

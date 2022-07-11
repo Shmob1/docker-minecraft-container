@@ -7,10 +7,10 @@ FROM ${BASE_IMAGE}
 # ensure consistent cache updates.
 ARG BUILD_FILES_REV=1
 RUN --mount=target=/build,source=build \
-    REV=${BUILD_FILES_REV} /build/run.sh install-packages
+  REV=${BUILD_FILES_REV} /build/run.sh install-packages
 
 RUN --mount=target=/build,source=build \
-    REV=${BUILD_FILES_REV} /build/run.sh setup-user
+  REV=${BUILD_FILES_REV} /build/run.sh setup-user
 
 COPY --chmod=644 files/sudoers* /etc/sudoers.d
 
@@ -67,9 +67,10 @@ COPY --chmod=644 files/server.properties /tmp/server.properties
 COPY --chmod=644 files/log4j2.xml /tmp/log4j2.xml
 COPY --chmod=755 files/autopause /autopause
 COPY --chmod=755 files/autostop /autostop
+COPY --chmod=755 files/autowhitelist /autowhitelist
 COPY --chmod=755 files/rconcmds /rconcmds
 
-RUN dos2unix /start* /autopause/* /autostop/* /rconcmds/*
+RUN dos2unix /start* /autopause/* /autostop/* /autowhitelist/* /rconcmds/*
 
 ENTRYPOINT [ "/start" ]
 HEALTHCHECK --start-period=1m CMD mc-health
